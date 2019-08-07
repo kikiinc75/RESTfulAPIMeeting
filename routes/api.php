@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::group(['prefix' => 'v1'], function () {
+Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     Route::resource('meeting', 'MeetingController', [
         'except' => ['create', 'edit']
     ]);
@@ -30,7 +30,7 @@ Route::group(['prefix' => 'v1'], function () {
         'uses' => 'AuthController@store'
     ]);
 
-    Route::post('/users/signin', [
+    Route::post('/user/signin', [
         'uses' => 'AuthController@signin'
     ]);
 });
